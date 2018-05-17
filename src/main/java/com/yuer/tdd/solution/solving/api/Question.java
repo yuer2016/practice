@@ -1,4 +1,6 @@
-package com.yuer.tdd.solution.solving;
+package com.yuer.tdd.solution.solving.api;
+
+import com.yuer.tdd.solution.solving.Answer;
 
 public abstract class Question {
     private int id;

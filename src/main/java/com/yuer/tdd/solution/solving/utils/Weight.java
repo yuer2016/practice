@@ -1,4 +1,4 @@
-package com.yuer.tdd.solution.solving;
+package com.yuer.tdd.solution.solving.utils;
 
 public enum Weight {
     MustMatch(Integer.MAX_VALUE),
@@ -8,6 +8,10 @@ public enum Weight {
     DontCare(0);
 
     private int value;
+
+    public int getValue() {
+        return value;
+    }
 
     Weight(int value) {
         this.value = value;

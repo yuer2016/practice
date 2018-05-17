@@ -1,7 +1,6 @@
 package com.yuer.okio;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -32,7 +31,6 @@ class ClientSocketTest {
     }
 
     @Test
-    @DisplayName("")
     void testConnectSocket(){
         assertThat(socket.isConnected()).isFalse();
     }

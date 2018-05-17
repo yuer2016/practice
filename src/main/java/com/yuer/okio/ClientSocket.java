@@ -27,6 +27,7 @@ public class ClientSocket implements Service {
         int port = Integer.parseInt(portStr);
         try {
             socket = new Socket(ipStr, port);
+            socket.setKeepAlive(true);
             if (socket.isConnected()) {
                 isConnect = true;
             }

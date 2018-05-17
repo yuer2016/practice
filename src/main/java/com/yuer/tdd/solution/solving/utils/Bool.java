@@ -1,4 +1,4 @@
-package com.yuer.tdd.solution.solving;
+package com.yuer.tdd.solution.solving.utils;
 
 public enum Bool {
     True(1),
