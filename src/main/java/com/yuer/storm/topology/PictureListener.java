@@ -1,6 +1,7 @@
 package com.yuer.storm.topology;
 
 import com.google.common.base.Charsets;
+import com.google.common.io.ByteSource;
 import com.google.common.io.CharSource;
 import com.google.common.io.Files;
 import org.apache.storm.spout.SpoutOutputCollector;
@@ -38,7 +39,18 @@ public class PictureListener extends BaseRichSpout {
 
     @Override
     public void nextTuple() {
-        lines.forEach(line -> outputCollector.emit(new Values(line)));
+        lines.forEach(line -> {
+                    String image = null;
+                    ByteSource byteSource = Files.asByteSource(new File(line));
+                    try {
+                        byte[] read = byteSource.read();
+                        image = Utils.bytesToHex(read);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    outputCollector.emit(new Values(image));
+                }
+        );
     }
 
     @Override

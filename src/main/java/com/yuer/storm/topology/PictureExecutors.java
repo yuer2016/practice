@@ -1,5 +1,6 @@
 package com.yuer.storm.topology;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.storm.Config;
 import org.apache.storm.Constants;
 import org.apache.storm.task.TopologyContext;
@@ -9,8 +10,9 @@ import org.apache.storm.topology.base.BaseBasicBolt;
 import org.apache.storm.tuple.Tuple;
 
 import java.util.Map;
-
+@Slf4j
 public class PictureExecutors extends BaseBasicBolt {
+    private HelloWorldClient client ;
 
     /**
      * 配置周期性发送tick tuple
@@ -28,7 +30,7 @@ public class PictureExecutors extends BaseBasicBolt {
      * */
     @Override
     public void prepare(Map stormConf, TopologyContext context) {
-
+        client = new HelloWorldClient("localhost", 50051);
     }
 
     @Override
@@ -39,10 +41,11 @@ public class PictureExecutors extends BaseBasicBolt {
     @Override
     public void execute(Tuple input, BasicOutputCollector collector) {
         if (isTickTuple(input)) {
-
+            log.info("tick tuple");
         } else {
             String component = input.getStringByField("commit");
-            System.out.println("this:-----:"+component);
+            log.info("this:-----:"+component);
+            client.greet(component);
         }
 
     }

@@ -25,10 +25,14 @@
         <okhttp.version>3.10.0</okhttp.version>
         <storm.version>1.2.2</storm.version>
         <guava.version>25.1-jre</guava.version>
+        <!--clojure core-->
+        <clojure.version>1.9.0</clojure.version>
+        <gloss.version>0.2.6</gloss.version>
         <!--grpc 远程过程调用-->
-        <grpc.version>1.15.0-SNAPSHOT</grpc.version>
+        <grpc.version>1.13.2</grpc.version>
         <protobuf.version>3.5.1</protobuf.version>
         <protoc.version>3.5.1-1</protoc.version>
+        <commons-pool2.version>2.6.0</commons-pool2.version>
 
         <!--logger 日志 -->
         <slf4j.version>1.7.25</slf4j.version>
@@ -37,6 +41,11 @@
 
         <!--java 字节码增强简化代码 -->
         <lombok.version>1.16.20</lombok.version>
+
+        <!--Java JMH基准测试-->
+        <jmh.version>1.21</jmh.version>
+
+
         <!--junit5.0 测试配置 -->
         <junit.platform.version>1.1.0</junit.platform.version>
         <junit.jupiter.version>5.1.0</junit.jupiter.version>
@@ -63,20 +72,28 @@
         <dependency>
             <groupId>org.clojure</groupId>
             <artifactId>clojure</artifactId>
-            <version>1.9.0</version>
+            <version>${clojure.version}</version>
         </dependency>
-
+        <!--clojure sql library-->
         <dependency>
             <groupId>korma</groupId>
             <artifactId>korma</artifactId>
             <version>0.4.3</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/byte-streams/byte-streams -->
+        <dependency>
+            <groupId>gloss</groupId>
+            <artifactId>gloss</artifactId>
+            <version>${gloss.version}</version>
+        </dependency>
+
+
         <!--gprc 远程过程调用-->
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-all</artifactId>
-            <version>1.13.2</version>
+            <version>${grpc.version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>guava</artifactId>
@@ -100,7 +117,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
+        <!--apache storm stream-->
         <dependency>
             <groupId>org.apache.storm</groupId>
             <artifactId>storm-core</artifactId>
@@ -122,15 +139,20 @@
                     <artifactId>log4j-over-slf4j</artifactId>
                     <groupId>org.slf4j</groupId>
                 </exclusion>
-
             </exclusions>
             <!--<scope>provided</scope>-->
         </dependency>
-
+        <!--google units tools-->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>${commons-pool2.version}</version>
         </dependency>
 
         <!-- Log framework -->
@@ -170,6 +192,19 @@
             <groupId>org.slf4j</groupId>
             <artifactId>log4j-over-slf4j</artifactId>
             <version>${slf4j.version}</version>
+        </dependency>
+        <!--java 基准测试-->
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+            <version>1.21</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <version>${jmh.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <!--junit test -->
