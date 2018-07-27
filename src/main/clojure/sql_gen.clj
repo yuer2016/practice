@@ -56,5 +56,15 @@
 
 (println (transform-output (list "name","value")))
 
+(defmacro chain
+  ([x form] `(. ~x ~form))
+  ([x form & more] `(chain (. ~x ~form) ~@more)))
+
+(defmacro bench [expr]
+  `(let [start# (System/nanoTime) result# ~expr]
+     {:result result# :elapsed (- (System/nanoTime) start#)}))
+
+(println (bench (str "a" "b")))
+
 
 
