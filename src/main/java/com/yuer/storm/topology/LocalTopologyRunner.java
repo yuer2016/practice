@@ -4,7 +4,7 @@ import org.apache.storm.LocalCluster;
 import org.apache.storm.utils.Utils;
 
 public class LocalTopologyRunner {
-    private static final int TEN_MINUTES = 10000;
+    private static final int TEN_MINUTES = 50000;
 
     public static void main(String[] args) {
         BasicTopologyBuilder topologyBuilder = new PictureTopologyBuilder();

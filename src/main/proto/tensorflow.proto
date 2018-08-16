@@ -3,17 +3,17 @@ syntax = "proto3";
 package com.yuer.storm.topology;
 
 // The greeting service definition.
-service Greeter {
+service FaceService {
     // Sends a greeting
-    rpc SayHello (HelloRequest) returns (HelloReply) {}
+    rpc recognition (FaceRequest) returns (FaceReply) {}
 }
 
 // The request message containing the user's name.
-message HelloRequest {
-    string name = 1;
+message FaceRequest {
+    string imgPath = 1;
 }
 
 // The response message containing the greetings
-message HelloReply {
-    string message = 1;
+message FaceReply {
+    string deviceId = 1;
 }
