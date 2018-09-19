@@ -23,7 +23,7 @@ class SearchTest {
         Search search = new Search(stream, "practical joke", "1");
         search.setSurroundingCharacterCount(10);
         search.execute();
-        assertThat(search.iserrord()).isFalse();
+        assertThat(search.isErrord()).isFalse();
         List<Match> matches = search.getMatches();
         assertThat(matches.size() >= 1).isTrue();
         Match match = matches.get(0);

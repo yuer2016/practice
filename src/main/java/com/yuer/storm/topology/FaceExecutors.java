@@ -23,14 +23,14 @@ public class FaceExecutors extends BaseBasicBolt {
     public void execute(Tuple input, BasicOutputCollector collector) {
         FaceModel faceImage = (FaceModel)input.getValueByField("faceImage");
         String vehicleId = FacePool.execute(faceImage.getImgPath());
-        FaceResult faceResult = new FaceResult()
-                .setDriverImg(faceImage.getImgPath())
-                .setImgTime(faceImage.getImgTime())
-                .setDriverId(faceImage.getDeviceId())
-                .setVehicleId(vehicleId);
-        log.info(faceResult.toString());
-
-
+        if(!vehicleId.isEmpty()){
+            FaceResult faceResult = new FaceResult()
+                    .setDriverImg(faceImage.getImgPath())
+                    .setImgTime(faceImage.getImgTime())
+                    .setDriverId(faceImage.getDeviceId())
+                    .setVehicleId(vehicleId);
+            log.info(faceResult.toString());
+        }
     }
 
     @Override

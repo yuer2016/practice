@@ -74,7 +74,7 @@ public class Search {
     public List<Match> getMatches() {
         return matches;
     }
-    public boolean iserrord(){
+    public boolean isErrord(){
         return exception != null;
     }
     public Exception getError(){
