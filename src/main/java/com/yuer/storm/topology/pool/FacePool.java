@@ -1,5 +1,6 @@
 package com.yuer.storm.topology.pool;
 
+import com.yuer.storm.topology.model.AdasModel;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.pool2.impl.GenericObjectPool;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
@@ -69,6 +70,13 @@ public class FacePool {
         String recognition = client.recognition(imagePath);
         objectPool.returnObject(client);
         return recognition;
+    }
+
+    public static String adasExecute(AdasModel adas){
+        SingleClient client = borrowObject();
+        String adasAlarmPicture = client.adasAlarmPicture(adas);
+        objectPool.returnObject(client);
+        return adasAlarmPicture;
     }
 
 

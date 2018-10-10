@@ -2,6 +2,7 @@ package com.yuer.storm.topology.pool;
 
 import com.yuer.storm.topology.FaceServiceGrpc;
 import com.yuer.storm.topology.Tensorflow;
+import com.yuer.storm.topology.model.AdasModel;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
@@ -31,4 +32,27 @@ class SingleClient {
         Tensorflow.FaceReply faceReply = faceBlockingStub.recognition(faceRequest);
         return faceReply.getDeviceId();
     }
+
+    String adasAlarmPicture(AdasModel adas){
+        FaceServiceGrpc.FaceServiceBlockingStub adasBlockingStub = FaceServiceGrpc.newBlockingStub(channel);
+        Tensorflow.AdasImageResqust adasImageResqust = Tensorflow.AdasImageResqust.newBuilder()
+                .setImagePath(adas.getImagePath())
+                .setTpy(getAlarmId(adas.getAlarmType()))
+                .build();
+        Tensorflow.AdasImageRespone adasImageRespone = adasBlockingStub.adasAnalysis(adasImageResqust);
+        return adasImageRespone.getResult();
+    }
+
+    private Tensorflow.AlarmId getAlarmId(Integer adas) {
+        switch (adas){
+            case 1 :
+                return Tensorflow.AlarmId.callPhone;
+            case 2 :
+                return Tensorflow.AlarmId.smoking;
+            default:
+                return  Tensorflow.AlarmId.other;
+        }
+    }
+
+
 }

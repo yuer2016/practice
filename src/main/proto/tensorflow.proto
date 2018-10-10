@@ -2,18 +2,44 @@ syntax = "proto3";
 
 package com.yuer.storm.topology;
 
-// The greeting service definition.
+// tesorFlow 图片识别服务.
 service FaceService {
-    // Sends a greeting
-    rpc recognition (FaceRequest) returns (FaceReply) {}
+    // 人脸任务识别
+    rpc recognition (FaceRequest) returns (FaceReply) {
+    }
+    // adas图片识别分析
+    rpc adasAnalysis (AdasImageResqust) returns (AdasImageRespone) {
+    }
 }
 
-// The request message containing the user's name.
+// 图片信息请求参数
 message FaceRequest {
     string imgPath = 1;
 }
 
-// The response message containing the greetings
+// 图片信息应答
 message FaceReply {
     string deviceId = 1;
+}
+
+//adas设备报警标识码
+enum AlarmId {
+    //其他
+    other = 0;
+    //抽烟
+    smoking = 1;
+    //打电话
+    callPhone = 2;
+}
+
+//adas图片识别报警
+message AdasImageResqust {
+    AlarmId tpy = 1;
+    string imagePath = 2;
+}
+
+//adas图片报警结果
+message AdasImageRespone {
+    AlarmId tpy = 1;
+    string result = 2;
 }
