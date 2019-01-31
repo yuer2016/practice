@@ -8,7 +8,6 @@ public class QueueManagerRun {
             for (int i = 0;i< 10;i++){
                 QueueManager.INSTANCE.put(i+"");
             }
-
         });
 
         Thread consumers = new Thread(() -> {
